@@ -36,7 +36,7 @@ app.get('/*', (req, res) => {
 });
 
 // Define an endpoint that must be called with an access token
-app.get("/api/external", (req, res) => {
+app.get("/api/external", checkJwt, (req, res) => {
   res.send({
     msg: "Your Access Token was successfully validated!"
   });
