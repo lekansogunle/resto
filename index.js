@@ -31,15 +31,15 @@ const checkJwt = jwt({
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-});
-
 // Define an endpoint that must be called with an access token
 app.get("/api/external", checkJwt, (req, res) => {
   res.send({
     msg: "Your Access Token was successfully validated!"
   });
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
 });
 
 // Start the app
