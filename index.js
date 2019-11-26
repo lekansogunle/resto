@@ -1,46 +1,27 @@
 const express = require("express");
-const jwt = require("express-jwt");
-const jwksRsa = require("jwks-rsa");
 const path = require('path');
+const mongoose = require('mongoose');
+const routes = require('./server/routes');
 
-// Create a new Express app
+require('dotenv').config();
+
 const app = express();
+app.use(express.json());
 
-// Set up Auth0 configuration
-const authConfig = {
-  domain: "lekansogunle.eu.auth0.com",
-  audience: "http://localhost:3000"
-};
-
-// Define middleware that validates incoming bearer tokens
-// using JWKS from lekansogunle.eu.auth0.com
-const checkJwt = jwt({
-  secret: jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
-  }),
-
-  audience: authConfig.audience,
-  issuer: `https://${authConfig.domain}/`,
-  algorithm: ["RS256"]
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useCreateIndex: true , useUnifiedTopology: true});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log("MongoDB database connection established!");
 });
 
+
+routes(app);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-
-// Define an endpoint that must be called with an access token
-app.get("/api/external", checkJwt, (req, res) => {
-  res.send({
-    msg: "Your Access Token was successfully validated!"
-  });
-});
-
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-});
+}); 
 
-// Start the app
-app.listen(process.env.PORT || 3001, () => console.log('API listening on 3001'));
+app.listen(process.env.PORT || 4000, () => console.log('APP listening on 4000'));
