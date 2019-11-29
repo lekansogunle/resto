@@ -22,6 +22,13 @@ const userSchema = new Schema({
     type: String,
     trim: true
   },
+  delivery_address: {
+    type: String,
+    trim: true
+  },
+  admin: {
+    type: Boolean,
+  },
 }, {
   timestamps: true,
 });

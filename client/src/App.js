@@ -24,7 +24,7 @@ function App() {
         <Switch>
           <Route path="/" exact />
           <PrivateRoute path="/profile" component={Profile} />
-	  <PrivateRoute path="/external-api" component={ExternalApi} />
+	        <PrivateRoute path="/external-api" component={ExternalApi} />
         </Switch>
       </BrowserRouter>
     </div>
