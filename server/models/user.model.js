@@ -29,6 +29,9 @@ const userSchema = new Schema({
   admin: {
     type: Boolean,
   },
+  last_signed_in: {
+    type: Date,
+  },
 }, {
   timestamps: true,
 });

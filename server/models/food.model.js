@@ -18,6 +18,9 @@ const foodSchema = new Schema({
   ingredients: {
     type: [String],
   },
+  price: {
+    type: Number,
+  },
 }, {
   timestamps: true,
 });

@@ -19,6 +19,9 @@ const orderSchema = new Schema({
     type: String,
     trim: true
   },
+  amount: {
+    type: Number
+  }
 }, {
   timestamps: true,
 });
