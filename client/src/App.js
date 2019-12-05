@@ -5,6 +5,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
 import ExternalApi from "./views/ExternalApi";
 import PrivateRoute from "./components/PrivateRoute";
+import Home from "./components/Home";
+import HowItWorks from "./components/HowItWorks";
+import Menu from "./components/Menu";
+import MyOrders from "./components/MyOrders";
 
 function App() {
   const { loading } = useAuth0();
@@ -22,9 +26,12 @@ function App() {
           <NavBar />
         </header>
         <Switch>
-          <Route path="/" exact />
+          <Route path="/menu" component={Menu} />
+          <Route path="/how-it-works" component={HowItWorks} />
+          <PrivateRoute path="/my-orders" component={MyOrders} />
           <PrivateRoute path="/profile" component={Profile} />
-	  <PrivateRoute path="/external-api" component={ExternalApi} />
+	        <PrivateRoute path="/external-api" component={ExternalApi} />
+          <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>
     </div>
