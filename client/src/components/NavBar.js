@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Menu, Button } from 'semantic-ui-react';
 
 const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
   return (
 
@@ -27,7 +27,7 @@ const NavBar = () => {
           {isAuthenticated && (<Link to="/profile">Profile</Link>)}
         </Menu.Item>
         <Menu.Item>
-          {isAuthenticated && (<Link to="/external-api">External API</Link>)}
+          {isAuthenticated && user && user.admin && (<Link to="/admin">Admin</Link>)}
         </Menu.Item>
         <Menu.Item>
           {!isAuthenticated && (

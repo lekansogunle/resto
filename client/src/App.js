@@ -9,6 +9,10 @@ import Home from "./components/Home";
 import HowItWorks from "./components/HowItWorks";
 import Menu from "./components/Menu";
 import MyOrders from "./components/MyOrders";
+import Admin from "./components/admin/Admin";
+import AdminMenu from "./components/admin/Menu";
+import MenuForm from "./components/admin/MenuForm";
+import AdminPrivateRoute from "./components/admin/AdminPrivateRoute";
 
 function App() {
   const { loading } = useAuth0();
@@ -31,6 +35,9 @@ function App() {
           <PrivateRoute path="/my-orders" component={MyOrders} />
           <PrivateRoute path="/profile" component={Profile} />
 	        <PrivateRoute path="/external-api" component={ExternalApi} />
+          <AdminPrivateRoute path="/admin" component={Admin} />
+          <AdminPrivateRoute path="/update-menu" component={AdminMenu} />
+          <AdminPrivateRoute path="/create-menu" component={MenuForm} food={{}} />
           <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>

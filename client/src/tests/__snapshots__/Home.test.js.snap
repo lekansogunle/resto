@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home, renders home page 1`] = `
+Array [
+  <div
+    className="ui massive steps"
+  >
+    <div
+      className="step"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="add to cart icon"
+        onClick={[Function]}
+      />
+      <div
+        className="content"
+      >
+        <div
+          className="title"
+        >
+          Order
+        </div>
+      </div>
+    </div>
+    <div
+      className="step"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="payment icon"
+        onClick={[Function]}
+      />
+      <div
+        className="content"
+      >
+        <div
+          className="title"
+        >
+          Pay
+        </div>
+      </div>
+    </div>
+    <div
+      className="step"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="truck icon"
+        onClick={[Function]}
+      />
+      <div
+        className="content"
+      >
+        <div
+          className="title"
+        >
+          Delivery
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div />,
+]
+`;

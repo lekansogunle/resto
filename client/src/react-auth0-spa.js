@@ -75,7 +75,7 @@ export const Auth0Provider = ({
       })
       .then(response => response.json())
       .then(data => {
-        user.id = data.user._id;
+        user = {...user, ...data.user};
         setUser(user);
       });
     } catch (error) {

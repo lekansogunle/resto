@@ -6,30 +6,31 @@ const MyOrders = () => {
   const { user, getTokenSilently } = useAuth0();
   const [orderList, setOrderList] = useState([]);
 
-  const getOrders = async () => {
-    try {
-      const token = await getTokenSilently();
-
-      fetch(`/api/users/${user.id}/orders`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          setOrderList(data.body);
-        });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   useEffect(
     () => {
+      const getOrders = async () => {
+        try {
+          const token = await getTokenSilently();
+    
+          fetch(`/api/users/${user._id}/orders`, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
+            .then(response => response.json())
+            .then(data => {
+              setOrderList(data.body);
+            });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
       if (user) {
+        console.log(user);
         getOrders();
       }
-    }, [user]
+    }, [user, getTokenSilently]
   )
 
   return (
