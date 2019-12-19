@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Home from '../components/Home';
 
-test('simple case', () => {
+test('simple example case', () => {
   expect(2+2).toEqual(4);
 })
 
