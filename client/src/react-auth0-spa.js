@@ -34,7 +34,7 @@ export const Auth0Provider = ({
 
       if (isAuthenticated) {
         const user = await auth0FromHook.getUser();
-        setUser(user);
+        syncUser(user);
       }
 
       setLoading(false);
@@ -53,7 +53,7 @@ export const Auth0Provider = ({
       setPopupOpen(false);
     }
     const user = await auth0Client.getUser();
-    setUser(user);
+    syncUser(user);
     setIsAuthenticated(true);
   };
 
@@ -63,7 +63,24 @@ export const Auth0Provider = ({
     const user = await auth0Client.getUser();
     setLoading(false);
     setIsAuthenticated(true);
-    setUser(user);
+    syncUser(user);
+  };
+
+  const syncUser = (user) => {
+    try {
+      fetch("/api/add_user", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+      })
+      .then(response => response.json())
+      .then(data => {
+        user = {...user, ...data.user};
+        setUser(user);
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <Auth0Context.Provider
