@@ -6,4 +6,4 @@ install:
   - cd client && yarn install
 
 script:
-  - cd client && yarn test
+  - yarn test
